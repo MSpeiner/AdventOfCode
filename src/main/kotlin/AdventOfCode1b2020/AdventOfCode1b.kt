@@ -15,7 +15,7 @@ fun main() {
 
         //Loopar igenom hela intData listans index
         for (i in intData.indices) {
-            //Innre loop som loppar igenom alla tal i listan efter Index I
+            //Inre loop som loppar igenom alla tal i listan efter Index I
             for (j in i+1..<intData.size) {
                 //Innersta loopen som loopar igenom och kollar om index i,j och l tillsammans blir 2020
                 for (l in i+2..<intData.size)

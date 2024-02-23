@@ -14,7 +14,7 @@ fun main() {
 
         //Loopar igenom hela intData listans index
         for (i in intData.indices) {
-            //Innre loop som loopar igenom alla tal efter index i för att kolla om index i * index J blir 2020
+            //Inre loop som loopar igenom alla tal efter index i för att kolla om index i * index J blir 2020
             for (j in i + 1 until intData.size) {
                 if (intData[i] + intData[j] == target)
                     return intData[i] * intData[j]
