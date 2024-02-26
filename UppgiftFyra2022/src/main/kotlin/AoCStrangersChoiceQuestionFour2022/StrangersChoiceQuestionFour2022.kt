@@ -1,0 +1,2 @@
+package AoCStrangersChoiceQuestionFour2022
+
