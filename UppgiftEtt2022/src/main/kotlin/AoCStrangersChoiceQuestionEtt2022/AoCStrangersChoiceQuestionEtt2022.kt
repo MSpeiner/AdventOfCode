@@ -7,38 +7,41 @@ val Url: String = "src/main/kotlin/input.txt"
 val inputDataString: List<String> = File(Url).readLines()
 val summedCalories = 0
 
-fun main() {
+//Lösning för del 1
+fun solution1(inputData: List<String>): Int {
+    val totalCalories = inputData.map { it.toIntOrNull() }
+    val listOfCalories = mutableListOf<Int>()
+    var summedCalories = 0
 
-//Skapar en lista som retunerar en Int lista med summerade värden av dem kalorier varje elv bär
-    fun createListOfSummedCalories(calories: List<Int?>): MutableList<Int> {
-        val listOfCalories = mutableListOf(summedCalories)
-        calories.forEachIndexed { index, nextRowOfCalorie ->
-            if (nextRowOfCalorie != null) {
-                val lastRowOfCalire = listOfCalories.size - 1
-                listOfCalories[lastRowOfCalire] = listOfCalories[lastRowOfCalire] + nextRowOfCalorie
-            } else {
-                listOfCalories.add(summedCalories)
-            }
+    totalCalories.forEachIndexed { index, nextRowOfCalorie ->
+        if (nextRowOfCalorie != null) {
+            summedCalories += nextRowOfCalorie
+        } else {
+            listOfCalories.add(summedCalories)
+            summedCalories = 0
         }
-        return listOfCalories
     }
+    listOfCalories.add(summedCalories)
+    //Retunerar det högsta värdet i listan
+    return listOfCalories.maxOf { it }
+}
 
-    //Metod som tar fram högsta värdet i listan
-    fun solution1(inputData: List<String>): Int {
-        val totalCalories = inputData.map { it.toIntOrNull() }
-        return createListOfSummedCalories(totalCalories).maxOf { it }
+//Lösning för del 2
+fun solution2(inputData: List<String>): Int {
+    val totalCalories = inputData.map { it.toIntOrNull() }
+    val listOfCalories = mutableListOf(0)
+    totalCalories.forEach { nextRowOfCalorie ->
+        nextRowOfCalorie?.let {
+            listOfCalories[listOfCalories.size - 1] += it
+        } ?: listOfCalories.add(0)
     }
-    //Metod som tar fram dem tre hösta värdena i listan
-    fun solution2(inputData: List<String>): Int {
-        val totalCalories = inputData.map { it.toIntOrNull() }
-        return createListOfSummedCalories(totalCalories).apply { sortDescending() }.take(3).sum()
-    }
+    return listOfCalories.apply { sortDescending() }.take(3).sum()
+}
 
+fun main() {
     //result 1
-    val result1 = solution1(inputDataString)
-    println(result1)
+    println(solution1(inputDataString))
 
     //result 2
-    val result2 = solution2(inputDataString)
-    println(result2)
+    println(solution2(inputDataString))
 }

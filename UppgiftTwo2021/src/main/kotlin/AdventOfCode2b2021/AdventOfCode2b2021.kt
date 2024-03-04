@@ -21,12 +21,10 @@ fun findFinalDepth(mappedList: Map<String, Int>): Int {
     val forwardValue = mappedList["forward"]?: 0
     val finalDepth = downValue - upValue
     val totalValue = finalDepth * forwardValue
-
     return totalValue
 }
 
 //Step2
-
 //Method that takes out the result of Part 2 through going through the list and goes through the
 fun createGroupsOfCommandsForPart2(listOfCommands: List<String>): Int {
     var aim = 0

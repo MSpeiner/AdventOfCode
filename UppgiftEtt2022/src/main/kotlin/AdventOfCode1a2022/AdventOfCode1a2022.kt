@@ -4,7 +4,8 @@ import java.io.File
 val Url: String = "src/main/kotlin/input.txt"
 val inputDataString: List<String> = File(Url).readLines()
 
-fun createListOfLists(inputData: List<String>): MutableList<List<Int>> {
+//Solution for part 1 AdventOfCode day 1 2022
+fun createListOfLists(inputData: List<String>): Int {
     val inputList: MutableList<List<Int>> = mutableListOf()
     var currentBlock: MutableList<Int> = mutableListOf()
     inputData.forEach { line ->
@@ -18,13 +19,13 @@ fun createListOfLists(inputData: List<String>): MutableList<List<Int>> {
     if (currentBlock.isNotEmpty()) {
         inputList.add(currentBlock.toList())
     }
-    return inputList
+
+    val listOfSum: List <Int> = inputList.map { it.sum()}
+    val largest = listOfSum.maxOf {it}
+
+    return largest
 }
 fun main() {
-
-    val listOfLists = createListOfLists(inputDataString)
-    val listOfSum: List <Int> = listOfLists.map { it.sum()}
-    val largest = listOfSum.maxOf {it}
-    println(largest)
+    println(createListOfLists(inputDataString))
 
 }

@@ -4,7 +4,8 @@ import java.io.File
 val Url: String = "src/main/kotlin/input.txt"
 val inputDataString: List<String> = File(Url).readLines()
 
-fun createListOfLists(inputData: List<String>): MutableList<List<Int>> {
+//Solution for part 2 AdventOfCode
+fun createListOfLists2(inputData: List<String>): Int {
     val inputList: MutableList<List<Int>> = mutableListOf()
     var currentBlock: MutableList<Int> = mutableListOf()
     inputData.forEach { line ->
@@ -18,20 +19,15 @@ fun createListOfLists(inputData: List<String>): MutableList<List<Int>> {
     if (currentBlock.isNotEmpty()) {
         inputList.add(currentBlock.toList())
     }
-    return inputList
-}
-fun main() {
-    //Part One solution
-    val listOfLists = createListOfLists(AdventOfCode1a2022.inputDataString)
-    val listOfSum: List <Int> = listOfLists.map { it.sum()}
-    val largestSum = listOfSum.maxOf {it}
-    println(largestSum)
-
-    //Part two Solution
+    val listOfSum: List<Int> = inputList.map { it.sum() }
+    val largestSum = listOfSum.maxOfOrNull { it } ?: 0
     val secondLargestSum = listOfSum.sortedDescending().get(1)
     val thirdLargestSum = listOfSum.sortedDescending().get(2)
-    val totalOfThreeLargestSums = largestSum + secondLargestSum + thirdLargestSum
-
+    return largestSum + secondLargestSum + thirdLargestSum
+}
+fun main() {
+    //Part 2 solution AoC 1a 2022
+    val totalOfThreeLargestSums = createListOfLists2(inputDataString)
     println(totalOfThreeLargestSums)
 
 }

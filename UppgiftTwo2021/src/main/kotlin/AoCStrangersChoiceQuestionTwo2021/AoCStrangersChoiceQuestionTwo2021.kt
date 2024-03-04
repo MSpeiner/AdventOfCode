@@ -7,7 +7,7 @@ val Url: String = "src/main/kotlin/input.txt"
 val input: List<String> = File(Url).readLines()
 
 //Solution for part 1
-fun calculatePosition(input: Iterable<String>) =
+fun calculatePosition(input: List<String>) =
     input.fold(Pair(0,0)) { currentPosition, command ->
         val (cmd, value) = command.split(' ').let { Pair(it[0], it[1].toInt()) }
         val newPosition = when(cmd) {
@@ -31,7 +31,7 @@ fun calculatePosition(input: Iterable<String>) =
     }
 
 //Solution method for part 2
-fun calculatePositionPartTwo(input: Iterable<String>): Int {
+fun calculatePositionPartTwo(input: List<String>): Int {
     var x = 0
     var y = 0
     var z = 0
